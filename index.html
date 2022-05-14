@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random dogs </title>
+
+    <script>
+        async function fetchAPI() {
+            var image = await fetch('https://dog.ceo/api/breeds/image/random')
+            var imageJSON = await image.json()
+        
+        var imageHTML = `
+                <img src='${imageJSON.message}' alt="Random dog"></img>
+            `
+        
+        document.getElementById('img').innerHTML = imageHTML
+        }
+
+        document.getElementById('button-dog').addEventListener('click', () => {
+            fetchAPI()
+        })
+
+        var image =  fetchAPI()
+    </script>
+
+    <style>
+        body {
+            display: flex;
+            align-items:center;
+            justify-content:center;
+            background: #3f3f3f;
+            flex-direction: column;
+            gap:20px;
+        }
+
+        button {
+            padding:10px 20px;
+            background: #2f23d4;
+            color: white;
+            border: none;
+            border-radius:10px;
+            cursor:pointer;
+        }
+
+        img {
+            width:350px;
+            height:350px;
+        }
+    </style>
+</head>
+<body>
+    <main id="img"></main>
+    
+    <button id="button-dog" > Dog! </button>
+</body>
+</html>
